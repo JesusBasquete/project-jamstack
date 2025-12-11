@@ -1,3 +1,7 @@
+# Nomes: Eduardo Rodrigues Reis - 162654
+#        Thiago Novinski Machado - 155476
+#        Vinícius Anselmo Rodrigues - 155466
+
 # Sebrae RS - Migração para Next.js (Jamstack)
 
 ## Descrição do Projeto
@@ -49,7 +53,7 @@ Este projeto exemplifica a transição de uma arquitetura monolítica (onde HTML
 
 1.  **Clone o repositório:**
     ```bash
-    git clone (https://github.com/seu-usuario/sebrae-nextjs.git)
+    git clone (link-repo)
     ```
 
 2.  **Instale as dependências:**
