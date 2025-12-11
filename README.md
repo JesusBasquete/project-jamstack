@@ -1,7 +1,3 @@
-# Nomes: Eduardo Rodrigues Reis - 162654
-#        Thiago Novinski Machado - 155476
-#        Vinícius Anselmo Rodrigues - 155466
-
 # Sebrae RS - Migração para Next.js (Jamstack)
 
 ## Descrição do Projeto
@@ -9,7 +5,9 @@
 Alunos: 
 
 Eduardo Rodrigues Reis - 162654
+
 Thiago Novinski Machado - 155476
+
 Vinícius Anselmo Rodrigues - 155466
 
 Este projeto consiste na modernização e migração do portal de cursos do **Sebrae RS**. Originalmente desenvolvido como um site estático tradicional (HTML, CSS e JavaScript), o projeto foi evoluído para uma aplicação web moderna utilizando **Next.js**.
