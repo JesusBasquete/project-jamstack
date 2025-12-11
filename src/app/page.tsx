@@ -1,12 +1,25 @@
 import Header from "@/components/Header";
 import CourseCard from "@/components/CourseCard";
 import SearchForm from "@/components/SearchForm";
-import Carousel from "@/components/Carousel"; // Novo componente
-import Footer from "@/components/Footer"; // Novo componente
-import { courses } from "@/data/courses";
-import Link from "next/link";
+import Carousel from "@/components/Carousel";
+import Footer from "@/components/Footer";
+import { courses } from "@/data/courses"; // O banco de dados misturado
 
 export default function Home() {
+  // --- LÓGICA DE FILTRAGEM ---
+
+  // 1. Pega apenas o que TEM "Consultoria" no título ou ID
+  const consultancies = courses.filter((item) =>
+    item.title.toLowerCase().includes("consultoria") ||
+    item.id.includes("consultoria")
+  );
+
+  // 2. Pega apenas o que NÃO TEM "Consultoria" (ou seja, os cursos)
+  const realCourses = courses.filter((item) =>
+    !item.title.toLowerCase().includes("consultoria") &&
+    !item.id.includes("consultoria")
+  );
+
   return (
     <main>
       <Header />
@@ -31,7 +44,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- SEÇÃO CATEGORIAS (Grid Rápido) --- */}
+      {/* --- CATEGORIAS --- */}
       <section className="category-section py-large">
         <div className="container">
           <header className="mb-large">
@@ -60,59 +73,40 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- CURSOS EM DESTAQUE (Agora com Carrossel) --- */}
+      {/* --- CURSOS EM DESTAQUE (Filtrado) --- */}
       <section className="courses-section container py-medium">
         <header className="mb-medium">
           <h2 className="heading-2">Cursos em destaque</h2>
           <p className="subtitle">Veja nossos cursos mais procurados.</p>
         </header>
 
-        {/* Usamos o componente Carousel aqui */}
         <Carousel>
-          {courses.map((course) => (
-            <div className="carousel__slide" key={course.id}>
+          {/* AQUI: Usamos apenas a lista 'realCourses' */}
+          {realCourses.map((course) => (
+            <div className="carousel__slide" key={course.id} style={{ minWidth: '300px' }}>
               <CourseCard course={course} />
             </div>
           ))}
         </Carousel>
       </section>
 
+      {/* --- CONSULTORIAS EM DESTAQUE (Filtrado) --- */}
       <section className="consultancies-section container py-medium">
         <header className="mb-large">
           <h2 className="heading-2">Consultorias em destaque</h2>
         </header>
 
         <Carousel>
-          <div className="carousel__slide">
-            <CourseCard course={{
-              id: "consultoria-financas",
-              title: "CONSULTORIA ONLINE - FINANÇAS",
-              category: "Finanças",
-              image: "/img/consultoria-online-finan-as-gest-o0.png",
-              duration: "1h", mode: "Online", price: "Gratuito"
-            }} />
-          </div>
-          <div className="carousel__slide">
-            <CourseCard course={{
-              id: "consultoria-estrategia",
-              title: "CONSULTORIA ONLINE - ESTRATÉGIA",
-              category: "Estratégia",
-              image: "/img/consultoria-online-estrat-gia-gest-o0.png",
-              duration: "1h", mode: "Online", price: "Gratuito"
-            }} />
-          </div>
-          <div className="carousel__slide">
-            <CourseCard course={{
-              id: "consultoria-mkt",
-              title: "CONSULTORIA ONLINE - MARKETING",
-              category: "Marketing",
-              image: "/img/consultoria-online-marketing-e-vendas-gest-o0.png",
-              duration: "1h", mode: "Online", price: "Gratuito"
-            }} />
-          </div>
+          {/* AQUI: Usamos apenas a lista 'consultancies' */}
+          {consultancies.map((consultancy) => (
+            <div className="carousel__slide" key={consultancy.id} style={{ minWidth: '300px' }}>
+              <CourseCard course={consultancy} />
+            </div>
+          ))}
         </Carousel>
       </section>
 
+      {/* --- TEMAS --- */}
       <section className="themes-section py-large">
         <div className="container">
           <header className="mb-large">
@@ -139,10 +133,15 @@ export default function Home() {
               <i className="fas fa-lightbulb theme-card__icon" style={{ fontSize: '40px', marginBottom: '10px' }}></i>
               <h3 className="theme-card__title">Inovação</h3>
             </a>
+            <a href="#" className="theme-card">
+              <i className="fas fa-gavel theme-card__icon" style={{ fontSize: '40px', marginBottom: '10px' }}></i>
+              <h3 className="theme-card__title">Leis e Normas</h3>
+            </a>
           </div>
         </div>
       </section>
 
+      {/* --- AJUDA --- */}
       <section className="help-section container py-large">
         <div className="help-inner">
           <div className="help-image-container">
@@ -152,18 +151,17 @@ export default function Home() {
             <h2 className="heading-2" style={{ textAlign: 'left' }}>Estamos aqui para te ajudar.</h2>
             <div className="help-grid">
               <a href="#" className="help-card">
-                <div className="help-card__icon-wrapper"><i className="fas fa-headset"></i></div>
+                <div className="help-card__icon-wrapper"><i className="fas fa-headset" style={{ fontSize: '24px', color: '#2b45ff' }}></i></div>
                 <div className="help-card__text-wrapper">
                   <h3 className="help-card__title">Fale com a gente</h3>
                 </div>
               </a>
               <a href="#" className="help-card">
-                <div className="help-card__icon-wrapper"><i className="fas fa-comments"></i></div>
+                <div className="help-card__icon-wrapper"><i className="fas fa-comments" style={{ fontSize: '24px', color: '#2b45ff' }}></i></div>
                 <div className="help-card__text-wrapper">
                   <h3 className="help-card__title">Consultorias</h3>
                 </div>
               </a>
-              {/* Adicione os outros cards aqui... */}
             </div>
           </div>
         </div>
