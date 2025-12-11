@@ -14,6 +14,8 @@ export async function generateStaticParams() {
 export default async function CursoDetalhes({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
     const course = courses.find((c) => c.id === id);
+    const generatedAt = new Date().toLocaleTimeString('pt-BR');
+    console.log(`[ISR] Gerando página para o curso ${id} às ${generatedAt}`);
 
     if (!course) {
         return (
@@ -83,6 +85,7 @@ export default async function CursoDetalhes({ params }: { params: Promise<{ id: 
                         <small style={{ color: '#999', display: 'block' }}>
                             ID: {id} <br />
                             Tipo de Renderização: ISR (Incremental Static Regeneration)
+                            <strong>Página gerada às: {generatedAt}</strong>
                         </small>
                     </div>
                 </div>

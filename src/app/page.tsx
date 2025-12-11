@@ -101,7 +101,7 @@ export default function Home() {
         </Carousel>
       </section>
 
-      {/* --- TEMAS (GRID COMPLETO COM 12 CARDS) --- */}
+      {/* --- TEMAS/CARDS --- */}
       <section className="themes-section py-large">
         <div className="container">
           <header className="mb-large">
