@@ -21,6 +21,7 @@ export default function Home() {
     <main>
       <Header />
 
+      {/* --- HERO SECTION --- */}
       <section className="hero-section">
         <div className="container">
           <div className="hero-inner">
@@ -40,6 +41,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* --- CATEGORIAS --- */}
       <section className="category-section py-large">
         <div className="container">
           <header className="mb-large">
@@ -68,6 +70,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* --- CURSOS EM DESTAQUE --- */}
       <section className="courses-section container py-medium">
         <header className="mb-medium">
           <h2 className="heading-2">Cursos em destaque</h2>
@@ -83,6 +86,7 @@ export default function Home() {
         </Carousel>
       </section>
 
+      {/* --- CONSULTORIAS EM DESTAQUE --- */}
       <section className="consultancies-section container py-medium">
         <header className="mb-large">
           <h2 className="heading-2">Consultorias em destaque</h2>
@@ -97,40 +101,78 @@ export default function Home() {
         </Carousel>
       </section>
 
+      {/* --- TEMAS (GRID COMPLETO COM 12 CARDS) --- */}
       <section className="themes-section py-large">
         <div className="container">
           <header className="mb-large">
             <h2 className="heading-2 text-white">Escolha seus Cursos ou Eventos pelo tema de interesse</h2>
           </header>
           <div className="themes-grid">
+            {/* 1. Formação do Educador */}
             <a href="#" className="theme-card">
               <img src="/img/para-forma-o-do-educador0.png" className="theme-card__icon" alt="" />
               <h3 className="theme-card__title">Formação do Educador</h3>
             </a>
+            {/* 2. Empreendedorismo */}
             <a href="#" className="theme-card">
               <img src="/img/empreendedorismo0.png" className="theme-card__icon" alt="" />
               <h3 className="theme-card__title">Empreendedorismo</h3>
             </a>
+            {/* 3. Estratégia */}
             <a href="#" className="theme-card">
               <img src="/img/estrat-gia0.png" className="theme-card__icon" alt="" />
               <h3 className="theme-card__title">Estratégia</h3>
             </a>
+            {/* 4. Finanças */}
             <a href="#" className="theme-card">
               <img src="/img/finan-as0.png" className="theme-card__icon" alt="" />
               <h3 className="theme-card__title">Finanças</h3>
             </a>
+            {/* 5. Inovação */}
             <a href="#" className="theme-card">
               <img src="/img/inova-o0.png" className="theme-card__icon" alt="" />
               <h3 className="theme-card__title">Inovação</h3>
             </a>
+            {/* 6. Leis e Normas */}
             <a href="#" className="theme-card">
               <img src="/img/leis-e-normas0.png" className="theme-card__icon" alt="" />
               <h3 className="theme-card__title">Leis e Normas</h3>
+            </a>
+            {/* 7. Marketing e Vendas */}
+            <a href="#" className="theme-card">
+              <img src="/img/marketing-e-vendas0.png" className="theme-card__icon" alt="" />
+              <h3 className="theme-card__title">Marketing e Vendas</h3>
+            </a>
+            {/* 8. MEI */}
+            <a href="#" className="theme-card">
+              <img src="/img/mei0.png" className="theme-card__icon" alt="" />
+              <h3 className="theme-card__title">MEI</h3>
+            </a>
+            {/* 9. Mercado */}
+            <a href="#" className="theme-card">
+              <img src="/img/mercado0.png" className="theme-card__icon" alt="" />
+              <h3 className="theme-card__title">Mercado</h3>
+            </a>
+            {/* 10. Pessoas */}
+            <a href="#" className="theme-card">
+              <img src="/img/pessoas0.png" className="theme-card__icon" alt="" />
+              <h3 className="theme-card__title">Pessoas</h3>
+            </a>
+            {/* 11. Processos */}
+            <a href="#" className="theme-card">
+              <img src="/img/processos0.png" className="theme-card__icon" alt="" />
+              <h3 className="theme-card__title">Processos</h3>
+            </a>
+            {/* 12. Sebrae tá on */}
+            <a href="#" className="theme-card">
+              <img src="/img/sebrae-t-on0.png" className="theme-card__icon" alt="" />
+              <h3 className="theme-card__title">Sebrae tá on</h3>
             </a>
           </div>
         </div>
       </section>
 
+      {/* --- SEÇÃO DE AJUDA --- */}
       <section className="help-section container py-large">
         <div className="help-inner">
           <div className="help-image-container">
