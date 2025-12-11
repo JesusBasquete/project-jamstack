@@ -3,18 +3,16 @@ import CourseCard from "@/components/CourseCard";
 import SearchForm from "@/components/SearchForm";
 import Carousel from "@/components/Carousel";
 import Footer from "@/components/Footer";
-import { courses } from "@/data/courses"; // O banco de dados misturado
+import { courses } from "@/data/courses";
 
 export default function Home() {
   // --- LÓGICA DE FILTRAGEM ---
 
-  // 1. Pega apenas o que TEM "Consultoria" no título ou ID
   const consultancies = courses.filter((item) =>
     item.title.toLowerCase().includes("consultoria") ||
     item.id.includes("consultoria")
   );
 
-  // 2. Pega apenas o que NÃO TEM "Consultoria" (ou seja, os cursos)
   const realCourses = courses.filter((item) =>
     !item.title.toLowerCase().includes("consultoria") &&
     !item.id.includes("consultoria")
@@ -73,7 +71,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- CURSOS EM DESTAQUE (Filtrado) --- */}
+      {/* --- CURSOS EM DESTAQUE --- */}
       <section className="courses-section container py-medium">
         <header className="mb-medium">
           <h2 className="heading-2">Cursos em destaque</h2>
@@ -81,7 +79,6 @@ export default function Home() {
         </header>
 
         <Carousel>
-          {/* AQUI: Usamos apenas a lista 'realCourses' */}
           {realCourses.map((course) => (
             <div className="carousel__slide" key={course.id} style={{ minWidth: '300px' }}>
               <CourseCard course={course} />
@@ -90,14 +87,13 @@ export default function Home() {
         </Carousel>
       </section>
 
-      {/* --- CONSULTORIAS EM DESTAQUE (Filtrado) --- */}
+      {/* --- CONSULTORIAS EM DESTAQUE --- */}
       <section className="consultancies-section container py-medium">
         <header className="mb-large">
           <h2 className="heading-2">Consultorias em destaque</h2>
         </header>
 
         <Carousel>
-          {/* AQUI: Usamos apenas a lista 'consultancies' */}
           {consultancies.map((consultancy) => (
             <div className="carousel__slide" key={consultancy.id} style={{ minWidth: '300px' }}>
               <CourseCard course={consultancy} />
@@ -141,25 +137,81 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- AJUDA --- */}
+      {/* --- SEÇÃO DE AJUDA (CORRIGIDA E COMPLETA) --- */}
       <section className="help-section container py-large">
         <div className="help-inner">
           <div className="help-image-container">
             <img src="/img/aqui-pra-ajudar-aspect-ratio-570-720-png0.png" alt="Mulher sorrindo" />
           </div>
+
           <div className="help-content">
-            <h2 className="heading-2" style={{ textAlign: 'left' }}>Estamos aqui para te ajudar.</h2>
+            {/* 1. Título e Subtítulo corrigidos conforme original */}
+            <h2 className="heading-2" style={{ textAlign: 'left' }}>
+              Estamos aqui para te ajudar, não<br />importa o desafio.
+            </h2>
+            <p className="subtitle mb-medium" style={{ textAlign: 'left', color: '#6b7280' }}>
+              Ficou com alguma dúvida? Chame a nossa equipe!
+            </p>
+
+            {/* 2. Grid com todos os 6 cards restaurados */}
             <div className="help-grid">
               <a href="#" className="help-card">
-                <div className="help-card__icon-wrapper"><i className="fas fa-headset" style={{ fontSize: '24px', color: '#2b45ff' }}></i></div>
+                <div className="help-card__icon-wrapper">
+                  <i className="fas fa-headset" style={{ fontSize: '24px', color: '#2b45ff' }}></i>
+                </div>
                 <div className="help-card__text-wrapper">
-                  <h3 className="help-card__title">Fale com a gente</h3>
+                  <h3 className="help-card__title">Precisa de ajuda?</h3>
+                  <p className="help-card__subtitle" style={{ fontSize: '12px', color: '#6b7280' }}>Fale com a gente</p>
                 </div>
               </a>
+
               <a href="#" className="help-card">
-                <div className="help-card__icon-wrapper"><i className="fas fa-comments" style={{ fontSize: '24px', color: '#2b45ff' }}></i></div>
+                <div className="help-card__icon-wrapper">
+                  <i className="fas fa-user-tie" style={{ fontSize: '24px', color: '#2b45ff' }}></i>
+                </div>
                 <div className="help-card__text-wrapper">
                   <h3 className="help-card__title">Consultorias</h3>
+                  <p className="help-card__subtitle" style={{ fontSize: '12px', color: '#6b7280' }}>Atendimento personalizado</p>
+                </div>
+              </a>
+
+              <a href="#" className="help-card">
+                <div className="help-card__icon-wrapper">
+                  <i className="fas fa-heart" style={{ fontSize: '24px', color: '#2b45ff' }}></i>
+                </div>
+                <div className="help-card__text-wrapper">
+                  <h3 className="help-card__title">Cursos Gratuitos</h3>
+                  <p className="help-card__subtitle" style={{ fontSize: '12px', color: '#6b7280' }}>Confira o que separamos</p>
+                </div>
+              </a>
+
+              <a href="#" className="help-card">
+                <div className="help-card__icon-wrapper">
+                  <i className="fab fa-whatsapp" style={{ fontSize: '24px', color: '#2b45ff' }}></i>
+                </div>
+                <div className="help-card__text-wrapper">
+                  <h3 className="help-card__title">Cursos Whatsapp</h3>
+                  <p className="help-card__subtitle" style={{ fontSize: '12px', color: '#6b7280' }}>Online, rápidos e gratuitos</p>
+                </div>
+              </a>
+
+              <a href="#" className="help-card">
+                <div className="help-card__icon-wrapper">
+                  <i className="fas fa-qrcode" style={{ fontSize: '24px', color: '#2b45ff' }}></i>
+                </div>
+                <div className="help-card__text-wrapper">
+                  <h3 className="help-card__title">Scanner</h3>
+                  <p className="help-card__subtitle" style={{ fontSize: '12px', color: '#6b7280' }}>Diagnóstico para sua empresa</p>
+                </div>
+              </a>
+
+              <a href="#" className="help-card">
+                <div className="help-card__icon-wrapper">
+                  <i className="fas fa-mobile-alt" style={{ fontSize: '24px', color: '#2b45ff' }}></i>
+                </div>
+                <div className="help-card__text-wrapper">
+                  <h3 className="help-card__title">Self Scanner</h3>
+                  <p className="help-card__subtitle" style={{ fontSize: '12px', color: '#6b7280' }}>Autodiagnóstico</p>
                 </div>
               </a>
             </div>
