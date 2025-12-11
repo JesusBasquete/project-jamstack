@@ -7,7 +7,6 @@ import { courses } from "@/data/courses";
 
 export default function Home() {
   // --- LÓGICA DE FILTRAGEM ---
-
   const consultancies = courses.filter((item) =>
     item.title.toLowerCase().includes("consultoria") ||
     item.id.includes("consultoria")
@@ -22,7 +21,6 @@ export default function Home() {
     <main>
       <Header />
 
-      {/* --- HERO SECTION --- */}
       <section className="hero-section">
         <div className="container">
           <div className="hero-inner">
@@ -42,7 +40,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- CATEGORIAS --- */}
       <section className="category-section py-large">
         <div className="container">
           <header className="mb-large">
@@ -71,7 +68,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- CURSOS EM DESTAQUE --- */}
       <section className="courses-section container py-medium">
         <header className="mb-medium">
           <h2 className="heading-2">Cursos em destaque</h2>
@@ -87,7 +83,6 @@ export default function Home() {
         </Carousel>
       </section>
 
-      {/* --- CONSULTORIAS EM DESTAQUE --- */}
       <section className="consultancies-section container py-medium">
         <header className="mb-large">
           <h2 className="heading-2">Consultorias em destaque</h2>
@@ -102,7 +97,6 @@ export default function Home() {
         </Carousel>
       </section>
 
-      {/* --- TEMAS --- */}
       <section className="themes-section py-large">
         <div className="container">
           <header className="mb-large">
@@ -110,34 +104,33 @@ export default function Home() {
           </header>
           <div className="themes-grid">
             <a href="#" className="theme-card">
-              <i className="fas fa-graduation-cap theme-card__icon" style={{ fontSize: '40px', marginBottom: '10px' }}></i>
+              <img src="/img/para-forma-o-do-educador0.png" className="theme-card__icon" alt="" />
               <h3 className="theme-card__title">Formação do Educador</h3>
             </a>
             <a href="#" className="theme-card">
-              <i className="fas fa-briefcase theme-card__icon" style={{ fontSize: '40px', marginBottom: '10px' }}></i>
+              <img src="/img/empreendedorismo0.png" className="theme-card__icon" alt="" />
               <h3 className="theme-card__title">Empreendedorismo</h3>
             </a>
             <a href="#" className="theme-card">
-              <i className="fas fa-chart-line theme-card__icon" style={{ fontSize: '40px', marginBottom: '10px' }}></i>
+              <img src="/img/estrat-gia0.png" className="theme-card__icon" alt="" />
               <h3 className="theme-card__title">Estratégia</h3>
             </a>
             <a href="#" className="theme-card">
-              <i className="fas fa-coins theme-card__icon" style={{ fontSize: '40px', marginBottom: '10px' }}></i>
+              <img src="/img/finan-as0.png" className="theme-card__icon" alt="" />
               <h3 className="theme-card__title">Finanças</h3>
             </a>
             <a href="#" className="theme-card">
-              <i className="fas fa-lightbulb theme-card__icon" style={{ fontSize: '40px', marginBottom: '10px' }}></i>
+              <img src="/img/inova-o0.png" className="theme-card__icon" alt="" />
               <h3 className="theme-card__title">Inovação</h3>
             </a>
             <a href="#" className="theme-card">
-              <i className="fas fa-gavel theme-card__icon" style={{ fontSize: '40px', marginBottom: '10px' }}></i>
+              <img src="/img/leis-e-normas0.png" className="theme-card__icon" alt="" />
               <h3 className="theme-card__title">Leis e Normas</h3>
             </a>
           </div>
         </div>
       </section>
 
-      {/* --- SEÇÃO DE AJUDA (CORRIGIDA E COMPLETA) --- */}
       <section className="help-section container py-large">
         <div className="help-inner">
           <div className="help-image-container">
@@ -145,7 +138,6 @@ export default function Home() {
           </div>
 
           <div className="help-content">
-            {/* 1. Título e Subtítulo corrigidos conforme original */}
             <h2 className="heading-2" style={{ textAlign: 'left' }}>
               Estamos aqui para te ajudar, não<br />importa o desafio.
             </h2>
@@ -153,65 +145,64 @@ export default function Home() {
               Ficou com alguma dúvida? Chame a nossa equipe!
             </p>
 
-            {/* 2. Grid com todos os 6 cards restaurados */}
             <div className="help-grid">
               <a href="#" className="help-card">
                 <div className="help-card__icon-wrapper">
-                  <i className="fas fa-headset" style={{ fontSize: '24px', color: '#2b45ff' }}></i>
+                  <img src="/img/symbols0.svg" alt="Ícone Ajuda" className="help-card__icon" />
                 </div>
                 <div className="help-card__text-wrapper">
                   <h3 className="help-card__title">Precisa de ajuda?</h3>
-                  <p className="help-card__subtitle" style={{ fontSize: '12px', color: '#6b7280' }}>Fale com a gente</p>
+                  <p className="help-card__subtitle">Fale com a gente</p>
                 </div>
               </a>
 
               <a href="#" className="help-card">
                 <div className="help-card__icon-wrapper">
-                  <i className="fas fa-user-tie" style={{ fontSize: '24px', color: '#2b45ff' }}></i>
+                  <img src="/img/symbols1.svg" alt="Ícone Consultoria" className="help-card__icon" />
                 </div>
                 <div className="help-card__text-wrapper">
                   <h3 className="help-card__title">Consultorias</h3>
-                  <p className="help-card__subtitle" style={{ fontSize: '12px', color: '#6b7280' }}>Atendimento personalizado</p>
+                  <p className="help-card__subtitle">Atendimento personalizado</p>
                 </div>
               </a>
 
               <a href="#" className="help-card">
                 <div className="help-card__icon-wrapper">
-                  <i className="fas fa-heart" style={{ fontSize: '24px', color: '#2b45ff' }}></i>
+                  <img src="/img/symbols2.svg" alt="Ícone Cursos Gratuitos" className="help-card__icon" />
                 </div>
                 <div className="help-card__text-wrapper">
                   <h3 className="help-card__title">Cursos Gratuitos</h3>
-                  <p className="help-card__subtitle" style={{ fontSize: '12px', color: '#6b7280' }}>Confira o que separamos</p>
+                  <p className="help-card__subtitle">Confira o que separamos</p>
                 </div>
               </a>
 
               <a href="#" className="help-card">
                 <div className="help-card__icon-wrapper">
-                  <i className="fab fa-whatsapp" style={{ fontSize: '24px', color: '#2b45ff' }}></i>
+                  <img src="/img/symbols3.svg" alt="Ícone Whatsapp" className="help-card__icon" />
                 </div>
                 <div className="help-card__text-wrapper">
                   <h3 className="help-card__title">Cursos Whatsapp</h3>
-                  <p className="help-card__subtitle" style={{ fontSize: '12px', color: '#6b7280' }}>Online, rápidos e gratuitos</p>
+                  <p className="help-card__subtitle">Online, rápidos e gratuitos</p>
                 </div>
               </a>
 
               <a href="#" className="help-card">
                 <div className="help-card__icon-wrapper">
-                  <i className="fas fa-qrcode" style={{ fontSize: '24px', color: '#2b45ff' }}></i>
+                  <img src="/img/symbols4.svg" alt="Ícone Scanner" className="help-card__icon" />
                 </div>
                 <div className="help-card__text-wrapper">
                   <h3 className="help-card__title">Scanner</h3>
-                  <p className="help-card__subtitle" style={{ fontSize: '12px', color: '#6b7280' }}>Diagnóstico para sua empresa</p>
+                  <p className="help-card__subtitle">Diagnóstico para sua empresa</p>
                 </div>
               </a>
 
               <a href="#" className="help-card">
                 <div className="help-card__icon-wrapper">
-                  <i className="fas fa-mobile-alt" style={{ fontSize: '24px', color: '#2b45ff' }}></i>
+                  <img src="/img/symbols5.svg" alt="Ícone Self Scanner" className="help-card__icon" />
                 </div>
                 <div className="help-card__text-wrapper">
                   <h3 className="help-card__title">Self Scanner</h3>
-                  <p className="help-card__subtitle" style={{ fontSize: '12px', color: '#6b7280' }}>Autodiagnóstico</p>
+                  <p className="help-card__subtitle">Autodiagnóstico</p>
                 </div>
               </a>
             </div>
