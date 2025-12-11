@@ -9,6 +9,7 @@ export default function SearchForm() {
                     type="search"
                     placeholder="Busque por termo ou categoria"
                     aria-label="Busca"
+                    style={{ backgroundColor: '#ffffff', color: '#333' }}
                 />
             </div>
             <button type="submit" className="btn btn--accent btn--uppercase">

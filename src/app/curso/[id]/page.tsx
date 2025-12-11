@@ -1,28 +1,20 @@
 import Header from "@/components/Header";
-import Footer from "@/components/Footer"; // Adicionei o Footer para ficar completo
+import Footer from "@/components/Footer";
+import AddToCartButton from "@/components/AddToCartButton";
 import { courses } from "@/data/courses";
 
-// 1. Configuração ISR
 export const revalidate = 60;
 
-// 2. generateStaticParams (SSG Híbrido)
 export async function generateStaticParams() {
     return courses.map((course) => ({
         id: course.id,
     }));
 }
 
-// 3. Componente da Página
-// NOTA: Adicionamos 'async' e tipamos params como Promise
 export default async function CursoDetalhes({ params }: { params: Promise<{ id: string }> }) {
-
-    // CORREÇÃO NEXT.JS 15: Aguardamos os parâmetros antes de usar
     const { id } = await params;
-
-    // Busca o curso correspondente ao ID resolvido
     const course = courses.find((c) => c.id === id);
 
-    // Se não encontrar, mostra erro
     if (!course) {
         return (
             <main>
@@ -45,7 +37,6 @@ export default async function CursoDetalhes({ params }: { params: Promise<{ id: 
             <div className="container py-large">
                 <div style={{ display: 'flex', gap: '40px', flexWrap: 'wrap', alignItems: 'flex-start' }}>
 
-                    {/* Imagem do Curso */}
                     <div style={{ flex: '1 1 400px', maxWidth: '600px' }}>
                         <img
                             src={course.image}
@@ -54,7 +45,6 @@ export default async function CursoDetalhes({ params }: { params: Promise<{ id: 
                         />
                     </div>
 
-                    {/* Informações */}
                     <div style={{ flex: '1 1 400px' }}>
                         <span className="course-card__badge" style={{ position: 'static', marginBottom: '16px', display: 'inline-block' }}>
                             {course.category}
@@ -64,12 +54,10 @@ export default async function CursoDetalhes({ params }: { params: Promise<{ id: 
                             {course.title}
                         </h1>
 
-                        {/* Descrição: Se não existir no objeto, usamos um texto padrão */}
                         <p className="subtitle" style={{ color: '#4b5563', lineHeight: '1.6', marginBottom: '24px' }}>
                             {course.description || "Aproveite este conteúdo exclusivo do Sebrae para impulsionar o seu negócio. Inscreva-se para ter acesso completo."}
                         </p>
 
-                        {/* Detalhes com ícones */}
                         <div className="course-card__details" style={{ marginBottom: '30px', fontSize: '16px', display: 'flex', gap: '20px' }}>
                             <div className="course-card__detail-item">
                                 <i className="fas fa-desktop" style={{ color: '#2b45ff', marginRight: '8px' }}></i>
@@ -85,10 +73,9 @@ export default async function CursoDetalhes({ params }: { params: Promise<{ id: 
                             <span style={{ fontSize: '24px', fontWeight: 'bold', color: '#11a25a' }}>
                                 {course.price}
                             </span>
-                            {/* Botão de ação apenas visual aqui */}
-                            <button className="btn btn--primary btn--uppercase" style={{ padding: '12px 24px', fontSize: '16px' }}>
-                                Inscrever-se Agora
-                            </button>
+
+                            <AddToCartButton courseTitle={course.title} />
+
                         </div>
 
                         <hr style={{ margin: '40px 0', border: '0', borderTop: '1px solid #eee' }} />
