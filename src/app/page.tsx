@@ -4,9 +4,9 @@ import SearchForm from "@/components/SearchForm";
 import Carousel from "@/components/Carousel";
 import Footer from "@/components/Footer";
 import { courses } from "@/data/courses";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export default function Home() {
-  // --- LÓGICA DE FILTRAGEM ---
   const consultancies = courses.filter((item) =>
     item.title.toLowerCase().includes("consultoria") ||
     item.id.includes("consultoria")
@@ -253,6 +253,7 @@ export default function Home() {
       </section>
 
       <Footer />
+      <ScrollReveal />
     </main>
   );
 }
