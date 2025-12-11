@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sebrae RS - Migração para Next.js (Jamstack)
 
-## Getting Started
+## Descrição do Projeto
 
-First, run the development server:
+Este projeto consiste na modernização e migração do portal de cursos do **Sebrae RS**. Originalmente desenvolvido como um site estático tradicional (HTML, CSS e JavaScript), o projeto foi evoluído para uma aplicação web moderna utilizando **Next.js**.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+O objetivo principal da migração foi adotar a arquitetura **Jamstack** e desacoplar o frontend, permitindo o uso de diferentes métodos de renderização (SSG, ISR, SSR e CSR) para otimizar a performance, o SEO e a experiência do usuário.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Estratégias de Renderização
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+O projeto utiliza uma abordagem híbrida, onde cada rota utiliza a estratégia de renderização mais adequada ao seu conteúdo:
 
-## Learn More
+| Página / Recurso | Tipo | Implementação | Justificativa Técnica |
+| :--- | :---: | :--- | :--- |
+| **Home Page** (`/`) | **SSG** | `Static Site Generation` | O conteúdo da página inicial (vitrine de cursos, banners) muda com pouca frequência. Gerar o HTML estático no *build* garante o menor *Time to First Byte* (TTFB) e indexação perfeita para SEO. |
+| **Detalhes do Curso** (`/curso/[id]`) | **ISR** | `Incremental Static Regeneration` <br> `revalidate: 60` | Detalhes de cursos (preço, descrição) precisam de performance estática, mas podem sofrer alterações. O ISR permite que a página seja atualizada em background a cada 60 segundos sem necessidade de novo *deploy*. `[id]` representa as rotas dinâmicas dos cursos. |
+| **Carrinho de Compras** (`/carrinho`) | **SSR** | `Server-Side Rendering` <br> `force-dynamic` | Esta página simula dados sensíveis e em tempo real (protocolo de segurança, hora do servidor, ofertas relâmpago). O SSR garante que esses dados sejam gerados frescos a cada requisição, nunca em cache. |
+| **Componentes Interativos** | **CSR** | `Client-Side Rendering` <br> `'use client'` | Componentes como o *SearchForm*, *Carousel* e *Botões de Ação* necessitam de acesso ao DOM e interação do usuário (clicks, estados). Eles são "hidratados" no navegador. |
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Comparação de Performance (Lighthouse)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Abaixo, a comparação entre a versão original (HTML/JS) e a versão migrada (Next.js).
 
-## Deploy on Vercel
+| Métrica | Site Original (Legado) | Next.js (Atual) | Análise da Melhoria |
+| :--- | :---: | :---: | :--- |
+| **Performance** | 92 | **93** | Melhorou um ponto ao arrumar o problema `A large DOM can increase the duration of style calculations`, sendo esse corrigido na troca da arquitetura. |
+| **LCP** (Largest Contentful Paint) | ~1.8s | **~1.7s** | O uso do componente `<Image>` do Next.js otimiza automaticamente formatos (WebP) e tamanhos, carregando o banner principal instantaneamente. |
+| **Accessibility** | **89** | 88 | Os problemas continuaram os mesmos, mas há um pequeno novo erro, os `Touch targets` estão com um espaçamento um pouco menor, estão muito próximos. |
+| **Best Practices** | 100 | **100** | Já seguia boas práticas, o que continua, mesmo em outra estrutura. Correção de problemas de acessibilidade (aria-labels) e uso de HTTPS/Links seguros por padrão mantiveram a qualidade. |
+| **SEO** | 91 | **100** | O uso de tags semânticas e a pré-renderização do servidor (SSG/SSR) facilitam a leitura por crawlers. |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Arquitetura de Frontend Desacoplado
+
+Este projeto exemplifica a transição de uma arquitetura monolítica (onde HTML e dados estão frequentemente misturados) para uma arquitetura **desacoplada**:
+
+1.  **Independência de Dados:** O frontend não depende diretamente de um banco de dados conectado. Ele consome dados (simulados em `src/data/courses.js`) como se fossem uma API externa. Isso permite que o backend seja trocado (ex: WordPress Headless, Strapi, API Java) sem quebrar a interface.
+2.  **Reutilização:** Componentes como `Header`, `Footer` e `CourseCard` são isolados e reutilizados em diferentes contextos, facilitando a manutenção.
+3.  **Escalabilidade:** Ao utilizar SSG e ISR, a carga no servidor é drasticamente reduzida. A maior parte do tráfego é servida diretamente via CDN (Vercel Edge Network), permitindo que o site aguente picos de acesso sem derrubar a infraestrutura.
+
+---
+
+## Como Executar o Projeto
+
+1.  **Clone o repositório:**
+    ```bash
+    git clone (https://github.com/seu-usuario/sebrae-nextjs.git)
+    ```
+
+2.  **Instale as dependências:**
+    ```bash
+    npm install
+    ```
+
+3.  **Rode o servidor de desenvolvimento:**
+    ```bash
+    npm run dev
+    ```
+
+4.  **Acesse:** Abra `http://localhost:3000` no seu navegador.
