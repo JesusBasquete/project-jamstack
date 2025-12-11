@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import CourseCard from "@/components/CourseCard";
+import SearchForm from "@/components/SearchForm";
 import { courses } from "@/data/courses";
 
 export default function Home() {
@@ -17,13 +18,7 @@ export default function Home() {
               <p className="subtitle text-white mb-medium">
                 Cursos, consultorias, e-books e muito conteúdo pra apoiar a tua jornada, não importa<br />o desafio.
               </p>
-              <form className="search-form" onSubmit={(e) => e.preventDefault()}>
-                <div className="input-group">
-                  <i className="fas fa-search search-icon" aria-hidden="true"></i>
-                  <input type="search" placeholder="Busque por termo ou categoria" aria-label="Busca" />
-                </div>
-                <button type="submit" className="btn btn--accent btn--uppercase">Pesquisar</button>
-              </form>
+              <SearchForm />
             </div>
             <div className="hero-image">
               <img
